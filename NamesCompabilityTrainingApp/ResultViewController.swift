@@ -9,36 +9,34 @@ import UIKit
 
 class ResultViewController: UIViewController {
 
-    @IBOutlet weak var namesLabel: UILabel!
-    @IBOutlet weak var resultLabel: UILabel!
     
-    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var namesLabel: UILabel!
+    
+    @IBOutlet weak var resultsLabel: UILabel!
+    
+    @IBOutlet weak var progressViewLabel: UIProgressView!
+    
     
     var firstName: String!
     var secondName: String!
     
     private var resultValue = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         resultValue = findResult()
         
         namesLabel.text = "\(firstName ?? "") and \(secondName ?? "")"
-        resultLabel.text = resultValue.formatted(.percent)
+        resultsLabel.text = resultValue.formatted(.percent)
         
-        progressView.progress = Float(resultValue) / 100
-        
-        progressView.transform = progressView.transform.scaledBy(x: 1, y: 7)
+        progressViewLabel.progress = Float(resultValue) / 100
+        progressViewLabel.transform = progressViewLabel.transform.scaledBy(x: 1, y: 5)
         
     }
     
-    
-    
     private func findValue(for name: String) -> Int {
         var count = 0
-
+        
         for character in name.lowercased() {
             switch character {
             case "a", "i", "j", "q", "y":
@@ -57,20 +55,20 @@ class ResultViewController: UIViewController {
                 count += 7
             case "f", "p":
                 count += 8
-            default:
+            default :
                 count += 0
             }
         }
         return count
     }
-
+    
     private func findResult() -> Int {
         var result = 0
-
+        
         let firstValue = findValue(for: firstName)
         let secondValue = findValue(for: secondName)
         let absDifference = abs(firstValue - secondValue)
-
+        
         switch absDifference {
         case 0, 1, 2:
             result = 100
@@ -85,8 +83,9 @@ class ResultViewController: UIViewController {
         }
         return result
     }
-  
-    @IBAction func goBackButtonTapped() {
-        
-    }
+    
+//    @IBAction func backButtonTapped() {
+//        performSegue(withIdentifier: "goBack", sender: nil)
+//    }
+    
 }
