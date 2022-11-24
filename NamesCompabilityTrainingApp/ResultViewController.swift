@@ -84,8 +84,4 @@ class ResultViewController: UIViewController {
         return result
     }
     
-//    @IBAction func backButtonTapped() {
-//        performSegue(withIdentifier: "goBack", sender: nil)
-//    }
-    
 }

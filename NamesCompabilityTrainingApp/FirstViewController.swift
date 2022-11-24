@@ -36,7 +36,6 @@ class FirstViewController: UIViewController {
     }
     
     @IBAction func unwindSegueToFirstVC(segue: UIStoryboardSegue) {
-//        guard segue.identifier == "goBack" else { return }
         yourNameTF.text = ""
         partnersTF.text = ""
 
